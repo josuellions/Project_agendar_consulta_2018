@@ -48,9 +48,9 @@
     <div class="col-sm-12">
       <h4><span class="label label-danger pull-right">* Atenção a data de suas consultas.</span></h4>
     </div>
-    @if(old('nmMedico'))
+    @if(old('nome_medico'))
       <div class="alert alert-success col-sm-12">
-        <strong>Sucesso</strong> agendamento do paciente: {{ old('nmMedico') }} realizado.
+        <strong>Sucesso</strong> agendamento do paciente: {{ old('nome_medico') }} realizado.
       </div>
     @endif
   @stop
