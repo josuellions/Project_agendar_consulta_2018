@@ -31,3 +31,11 @@ footer.footer p{
   padding: 2.7rem;
   text-align: center;
 }
+
+.iconlist{
+  text-align: center;
+}
+
+table > thead > tr > th{
+  text-align: center;
+}

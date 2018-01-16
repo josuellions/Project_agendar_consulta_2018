@@ -1,40 +1,62 @@
 <?php
 
 namespace agendaconsulta\Http\Controllers;
-
+use agendaconsulta\Http\ConsultasRequest;
 use Illuminate\Support\Facades\DB;
 use agendaconsulta\Consultas;
 use Request;
 
 class ConsultaController extends Controller {
   
+  //consultando dados no banco, enviando dados para view listagem exibir na tela
   public function lista(){
-    // consultando dados no banco
     $consultar = Consultas::all();
-
-    //enviando dados para view listagem exibir na tela
     return view ('pacientes.listagem')->withConsultar($consultar);
   }
 
-  public function detalhe($id){
-    //Consultar no banco
+  //Consultar detalhada no banco dados, enviar dados para view detalhes exibir na tela 
+  public function detalhes($id){
     $consultar = Consultas::find($id);
-
-    //enviar dados para view detalhes exibir na tela
     $resposta = (empty($consultar)) ? "Não encontrado!!!" : view('pacientes.detalhe')->withdetalhes( $consultar);
-
     return $resposta;
   }
 
+  //direcionando para pagina formulario
   public function novaconsulta() {
-    //direcionando para pagina formulario
     return view('medicos.formulario');
   }
 
+  //capturando dados do formulario, salvar no banco dados e retorna para listagem
   public function adicionarconsulta(){
-    //capturando dados do formulario, salvar no banco dados e retorna para listagem
     Consultas::create(Request::all());
     return redirect()->route('listagem')->withInput(Request::only('nome_medico'));
+  }
+
+  //remover consulta do banco dados, retorna para listagem
+  public function removerconsulta($id) {
+    $consultar = Consultas::find($id);
+    $consultar->delete();
+    return redirect()->route('listagem'); //->with('autofocus', true);
+  }
+
+  //direcionando para pagina formulario de alteração
+  public function alterarconsulta($id){
+    $resposta = Consultas::find($id);
+    
+    return view('medicos.alterarconsulta')->withConsultas( $resposta); 
+  }
+
+  //alterando informações no banco de dados
+  public function updateconsulta( ConsultasRequest $request ){
+    $consultar = Consultar::find( $request['id'] );
+    $consultar->delete();
+
+    $update = Consultar::create( $request->all() );
+
+    $resposta = $update ? redirect( )->route( 'listagem' )->withInput( Request::only( 'nome_medico') ) :
+      redirect( )->route( 'medicos.alterarconsulta', $id)->with(['error' => 'Falha ao alterar dados!']);
+    
+    return $resposta;
   }
 
 }
