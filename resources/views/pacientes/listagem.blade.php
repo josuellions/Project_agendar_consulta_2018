@@ -12,15 +12,15 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <td>ID</td>
-          <td>Cod</td>
-          <td>Dt Cadastro</td>
-          <td>Dt Consulta</td>
-          <td>Nome</td>
-          <td>CRM/CRO</td>
-          <td>Tipo</td>
-          <td>Status</td>
-          <td>Detalhes</td>
+          <th>ID</th>
+          <th>Cod</th>
+          <th>Dt Cadastro</th>
+          <th>Dt Consulta</th>
+          <th>Nome</th>
+          <th>CRM/CRO</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th>Detalhes</th>
         </tr>
       </thead>
         <tbody>
@@ -45,7 +45,12 @@
         </tbody>
       </table>
     @endif
-
-    <h4><span class="label label-danger pull-right">* Atenção a data de suas consultas.</span></h4>
-    
+    <div class="col-sm-12">
+      <h4><span class="label label-danger pull-right">* Atenção a data de suas consultas.</span></h4>
+    </div>
+    @if(old('nmMedico'))
+      <div class="alert alert-success col-sm-12">
+        <strong>Sucesso</strong> agendamento do paciente: {{ old('nmMedico') }} realizado.
+      </div>
+    @endif
   @stop

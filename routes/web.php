@@ -13,14 +13,19 @@
 
 Route::get('/', function () {
     return view('welcome');
-    return '<h1>Primeira pagina</h1>';
 });
 
 // rota para listagem de consultas
-Route::get('/consultas', 'ConsultaController@lista');
+Route::get('/consultas', ['as' => 'listagem', 'uses' => 'ConsultaController@lista']);
 
 // rota para detalhes de consultas
 Route::get('/consultas/detalhes/{id}', 'ConsultaController@detalhe')->where('id','[0-9]+');
+
+// rota para criar novo agendamento
+Route::get('/consultas/nova',['as' => 'agendar', 'uses' => 'ConsultaController@novaconsulta']);
+
+// rota para adcionar novo agendamento ao banco
+Route::post('/consultas/adicionar', 'ConsultaController@adicionarconsulta');
 
 
 
