@@ -16,7 +16,10 @@
           <a class="navbar-brand" href="/">Agendamento de Consultas</a>
         </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/consultas">Listagem</a></li>
+            <li><a href="{{ action ('ConsultaController@lista') }}">Listagem</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ action ('ConsultaController@novaconsulta') }}">Agendar</a></li>
           </ul>
       </div>
     </nav>
