@@ -43,4 +43,4 @@
 
     <button type="submit" class="btn btn-primary col-sm-4">Alterar</button>
   </form>
-@stop
+@endsection

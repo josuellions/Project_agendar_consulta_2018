@@ -16,7 +16,7 @@
           <th>Cod</th>
           <th>Dt Cadastro</th>
           <th>Dt Consulta</th>
-          <th>Nome</th>
+          <th>Nome Médico</th>
           <th>CRM/CRO</th>
           <th>Tipo</th>
           <th>Status</th>
@@ -48,7 +48,7 @@
                   </a>
               </td>
               <td class="text-center" id="btnUpdate">
-                <a href="{{action( 'ConsultaController@alterarconsulta', $consulta->id ) }}">
+                <a href="{{ action( 'ConsultaController@alterarconsulta', $consulta->id ) }}">
                   <span class="glyphicon glyphicon-pencil"></span>
                 </a>
 						</td>
@@ -65,4 +65,4 @@
         <strong>Sucesso</strong> agendamento do paciente: {{ old('nome_medico') }} realizado.
       </div>
     @endif
-  @stop
+@endsection

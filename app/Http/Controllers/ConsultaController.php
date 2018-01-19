@@ -1,10 +1,13 @@
 <?php
 
 namespace agendaconsulta\Http\Controllers;
+
 use agendaconsulta\Http\ConsultasRequest;
 use Illuminate\Support\Facades\DB;
 use agendaconsulta\Consultas;
-use Request;
+use Illuminate\Http\Request;
+use Redirect;
+//use Request;
 
 class ConsultaController extends Controller {
   
@@ -41,22 +44,15 @@ class ConsultaController extends Controller {
 
   //direcionando para pagina formulario de alteração
   public function alterarconsulta($id){
-    $resposta = Consultas::find($id);
-    
-    return view('medicos.alterarconsulta')->withConsultas( $resposta); 
+    $resposta = Consultas::findOrFail($id);
+    return view('medicos.formulario', ['resposta' => $resposta] );
   }
 
   //alterando informações no banco de dados
-  public function updateconsulta( ConsultasRequest $request ){
-    $consultar = Consultar::find( $request['id'] );
-    $consultar->delete();
-
-    $update = Consultar::create( $request->all() );
-
-    $resposta = $update ? redirect( )->route( 'listagem' )->withInput( Request::only( 'nome_medico') ) :
-      redirect( )->route( 'medicos.alterarconsulta', $id)->with(['error' => 'Falha ao alterar dados!']);
-    
-    return $resposta;
+  public function updateconsulta($id, Request $request){
+    $consulta = Consultas::findOrFail($id);
+    $consulta->update($request->all());
+    return redirect()->route('listagem')->with('autofocus', true); //->withInput( Request::only( 'nome_medico') );
   }
 
 }

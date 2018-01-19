@@ -10,3 +10,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
+documentacao.txt
+ConsultaController_bkp.txt
+formulario_bkp.txt
+alterarconsulta.blade.php
