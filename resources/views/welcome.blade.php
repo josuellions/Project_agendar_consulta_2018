@@ -4,8 +4,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcout icon" type="image/x-icon" href="img/medical_icon_1.png">
+        <link rel="icon" type="image/x-icon" href="img/medical_icon_1.png">
 
-        <title>Laravel</title>
+        <title>Agendamento Consultas</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -78,10 +80,14 @@
             @endif
 
             <div class="content">
+                <div class="container-fluid">
+                    <img src="{{asset ('img/banner/medicina.jpg')}}" alt="banner medicina" title="banner medicina" width="1024px" height="300px">
+                </div>
+
                 <div class="title m-b-md">
                     <p>Laravel </p>
                     <ul class="nav navbar-nav navbar-right" style="list-style: none;">
-                        <li><a href="/consultas" style="text-decoration: none;">Agendamento de Consultas</a></li>
+                        <li><a href="/consultas" style="text-decoration: none;" title="Click aqui para agendamentos">Agendamento de Consultas</a></li>
                     </ul>
                 </div>
 

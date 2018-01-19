@@ -16,30 +16,42 @@
           <th>Cod</th>
           <th>Dt Cadastro</th>
           <th>Dt Consulta</th>
-          <th>Nome</th>
+          <th>Nome Médico</th>
           <th>CRM/CRO</th>
           <th>Tipo</th>
           <th>Status</th>
           <th>Detalhes</th>
+          <th>Remover</th>
+          <th>Alterar</th>
         </tr>
       </thead>
         <tbody>
         <!-- Incluindo dados vindos da ConsultaController -->
           @foreach ($consultar as $consulta)
             <tr class="{{ $consulta->status == 1 ? 'danger' : ''}}">
-              <td>{{ $consulta->id }}</td>
-              <td>{{ $consulta->cod_medico }}</td>
-              <td>{{ $consulta->dt_cadastro}}</td>
-              <td>{{ $consulta->dt_agendada}}</td>            
-              <td>{{ $consulta->nome_medico }}</td>
-              <td>{{ $consulta->crm_cro }}</td>
-              <td>{{ $consulta->tipo_medico }}</td>
-              <td>{{ $consulta->status == 1 ? 'agendado' : 'finalizado'}}</td>
-              <td>
-                  <a href="/consultas/detalhes/{{ $consulta->id }}">
+              <td class="text-center">{{ $consulta->id }}</td>
+              <td class="text-center">{{ $consulta->cod_medico }}</td>
+              <td class="text-center">{{ $consulta->dt_cadastro}}</td>
+              <td class="text-center">{{ $consulta->dt_agendada}}</td>            
+              <td class="text-left">{{ $consulta->nome_medico }}</td>
+              <td class="text-right">{{ $consulta->crm_cro }}</td>
+              <td class="text-center">{{ $consulta->tipo_medico }}</td>
+              <td class="text-center">{{ $consulta->status == 1 ? 'agendado' : 'finalizado'}}</td>
+              <td class="text-center">
+                  <a href="{{ action ('ConsultaController@detalhes', $consulta->id) }}">
                     <span class="glyphicon glyphicon-search"></span>
                   </a>
               </td>
+              <td class="text-center">
+                  <a href="{{ action ('ConsultaController@removerconsulta', $consulta->id) }}">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+              </td>
+              <td class="text-center" id="btnUpdate">
+                <a href="{{ action( 'ConsultaController@alterarconsulta', $consulta->id ) }}">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+						</td>
             </tr>
           @endforeach
         </tbody>
@@ -48,9 +60,9 @@
     <div class="col-sm-12">
       <h4><span class="label label-danger pull-right">* Atenção a data de suas consultas.</span></h4>
     </div>
-    @if(old('nmMedico'))
-      <div class="alert alert-success col-sm-12">
-        <strong>Sucesso</strong> agendamento do paciente: {{ old('nmMedico') }} realizado.
+    @if(old('nome_medico'))
+      <div class="alert alert-success col-sm-8">
+        <strong>Sucesso</strong> agendamento do paciente: {{ old('nome_medico') }} realizado.
       </div>
     @endif
-  @stop
+@endsection

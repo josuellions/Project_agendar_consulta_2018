@@ -2,65 +2,57 @@
 
 namespace agendaconsulta\Http\Controllers;
 
+use agendaconsulta\Http\ConsultasRequest;
 use Illuminate\Support\Facades\DB;
-use Request;
+use agendaconsulta\Consultas;
+use Illuminate\Http\Request;
+use Redirect;
+//use Request;
 
-class ConsultaController {
+class ConsultaController extends Controller {
   
+  //consultando dados no banco, enviando dados para view listagem exibir na tela
   public function lista(){
-    // consultando dados no banco
-    $consultar = DB::select('select * from tb_medico');
-
-    //enviando dados para view listagem exibir na tela
+    $consultar = Consultas::all();
     return view ('pacientes.listagem')->withConsultar($consultar);
-    
-    //teste if listagem
-    //return view ('listagem')->withConsultar( array());
   }
 
-  public function detalhe($id){
-    //Consultar no banco
-    $consulta = DB::select('select * from tb_medico where id = ?', [$id]);
-
-    //enviar dados para view detalhes exibir na tela
-    $resposta = (empty($consulta)) ? "Não encontrado!!!" : view('pacientes.detalhe')->withdetalhes( $consulta[0]);
-
+  //Consultar detalhada no banco dados, enviar dados para view detalhes exibir na tela 
+  public function detalhes($id){
+    $consultar = Consultas::find($id);
+    $resposta = (empty($consultar)) ? "Não encontrado!!!" : view('pacientes.detalhe')->withdetalhes( $consultar);
     return $resposta;
   }
 
+  //direcionando para pagina formulario
   public function novaconsulta() {
-    //direcionando para pagina formulario
     return view('medicos.formulario');
   }
 
+  //capturando dados do formulario, salvar no banco dados e retorna para listagem
   public function adicionarconsulta(){
-    //capturando dados do formulario, salvar no banco dados e retorna para listagem
-    $codMedico = "2";
-    $dtCadastro = "2018-01-15";
+    Consultas::create(Request::all());
+    return redirect()->route('listagem')->withInput(Request::only('nome_medico'));
+  }
 
-    $dtAgendada = Request::input('dtConsulta');
-    $nmMedico = Request::input('nmMedico');
+  //remover consulta do banco dados, retorna para listagem
+  public function removerconsulta($id) {
+    $consultar = Consultas::find($id);
+    $consultar->delete();
+    return redirect()->route('listagem'); //->with('autofocus', true);
+  }
 
-    $nmPaciente = Request::input('nmPaciente');
-    $numConvenio = Request::input('numConvenio');
-    $status = Request::input('nvStatus');
+  //direcionando para pagina formulario de alteração
+  public function alterarconsulta($id){
+    $resposta = Consultas::findOrFail($id);
+    return view('medicos.formulario', ['resposta' => $resposta] );
+  }
 
-    $tpMedico = "2";
-    
-    //persistir dados no banco
-    DB::table('tb_medico')->insert (
-      ['cod_medico' => $codMedico,
-       'dt_cadastro' => $dtCadastro,
-       'dt_agendada' => $dtAgendada,
-       'nome_medico' => $nmMedico,
-       'crm_cro' => $numConvenio,
-       'status' => $status,
-       'tipo_medico'  => $tpMedico
-      ]
-    );
-
-    //direcionar para pagina listagem
-    return redirect()->route('listagem')->withInput(Request::only('nmMedico'));
+  //alterando informações no banco de dados
+  public function updateconsulta($id, Request $request){
+    $consulta = Consultas::findOrFail($id);
+    $consulta->update($request->all());
+    return redirect()->route('listagem')->with('autofocus', true); //->withInput( Request::only( 'nome_medico') );
   }
 
 }
