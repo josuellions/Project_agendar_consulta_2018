@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcout icon" type="image/x-icon" href="img/medical_icon_1.png">
-        <link rel="icon" type="image/x-icon" href="img/medical_icon_1.png">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcout icon" type="image/x-icon" href="{{asset ('img/medical_icon_1.png')}}">
+        <link rel="icon" type="image/x-icon" href="{{asset ('img/medical_icon_1.png')}}">
+ <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
         <title>Agendamento Consultas</title>
 
         <!-- Fonts -->
@@ -64,6 +64,83 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .container-fluid .bannerhome{
+                max-width:70%; 
+                max-height: 300px !important;
+            }
+
+
+        /*SMARTPHONE*/
+        @media (max-width: 412px) {
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 25;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 1.5rem;
+                margin-left: -10%;
+                
+            }
+
+            .title > p{
+                margin-left: 10%;
+            }
+
+            .links > a {   
+                color: #636b6f;
+                padding: 0 5px;
+                font-size: .7rem;
+                font-weight: 6;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+             }
+
+           ul li a {
+               list-style: none;
+           }
+
+            .m-b-md {
+                margin-bottom:  125px;
+            }
+
+            .container-fluid .bannerhome{
+                margin-top: 65px;
+                padding: 0 15px;
+                max-width:70%; 
+                max-height: 100px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -80,14 +157,14 @@
             @endif
 
             <div class="content">
-                <div class="container-fluid">
-                    <img src="{{asset ('img/banner/medicina.jpg')}}" alt="banner medicina" title="banner medicina" width="1024px" height="300px">
+                <div class="container-fluid bannerhome">
+                    <img class="bannerhome"  src="{{asset ('img/banner/medicina.jpg')}}" alt="banner medicina" title="banner medicina">
                 </div>
 
                 <div class="title m-b-md">
                     <p>Laravel </p>
-                    <ul class="nav navbar-nav navbar-right" style="list-style: none;">
-                        <li><a href="/consultas" style="text-decoration: none;" title="Click aqui para agendamentos">Agendamento de Consultas</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ ('/consultas') }}" title="Click aqui para agendamentos">Agendamento de Consultas</a></li>
                     </ul>
                 </div>
 
