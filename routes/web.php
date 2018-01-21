@@ -11,17 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::group(['middleware'=>'web'], function(){
-    Route::auth();
+   // Route::auth();
     Route::get('/home', 'HomeController@index')->name('home');
 
     // Route::get('/', 'HomeController@index')->name('home');
@@ -49,3 +44,21 @@ Route::group(['middleware'=>'web'], function(){
     Route::patch('/consultas/update/{id}', 'ConsultaController@updateconsulta');
 
 });
+
+Auth::routes();
+$router->get('/', function () {
+    return view('welcome');
+});
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+//ok acesso lista
+//$router->get('/consultas', ['as' => 'listagem','uses' => 'ConsultaController@lista']);
+
+//na funcinou
+// Route::controllers([
+//     'auth' => 'Auth\AuthController',
+//     'password' => 'Auth\PasswordController',
+// ]);
+
+//Route::get('auth/login','HomeController@login')->name('login');

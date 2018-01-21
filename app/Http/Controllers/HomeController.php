@@ -3,6 +3,8 @@
 namespace agendaconsulta\Http\Controllers;
 
 use Illuminate\Http\Request;
+use agendaconsulta\Consultas;
+use agendaconsulta\Http\ConsultasRequest;
 
 class HomeController extends Controller
 {

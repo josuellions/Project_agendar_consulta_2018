@@ -61,6 +61,10 @@
                 text-transform: uppercase;
             }
 
+            ul {
+               list-style: none;
+           }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -126,7 +130,7 @@
                 text-transform: uppercase;
              }
 
-           ul li a {
+           ul {
                list-style: none;
            }
 
@@ -148,10 +152,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/login') }}">Logout</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/register') }}">Cadastro</a>
                     @endif
                 </div>
             @endif

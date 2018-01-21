@@ -20,23 +20,23 @@
         
       <div class="form-group">
         {!!Form::label('dt_cadastro','Data Consulta:')!!}
-        {!!Form::input('text','dt_cadastro', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'Data Consulta'])!!}
+        {!!Form::input('text','dt_cadastro', null, ['class' => 'form-control', 'autofocus', 'placeholder' => 'yyyy-mm-dd'])!!}
       </div>
       <!-- para teste -->
-      {!!Form::hidden('dt_agendada', '2018-05-15', ['class'=>'form-control'])!!}
+      {!!Form::hidden('dt_agendada', '2018-05-15', ['class'=>'form-control', 'placeholder' => 'yyyy-mm-dd'])!!}
     
       <div class="form-group">
         {!!Form::label('nome_medico','Nome Médico:')!!}
-        {!!Form::input('text','nome_medico', null, ['class' => 'form-control'])!!}
+        {!!Form::input('text','nome_medico', null, ['class' => 'form-control', 'placeholder' => 'Nome Doutor / Médico'])!!}
       </div>
 
       <div class="form-group">
         {!!Form::label('crm_cro', 'Número Convênio:')!!}
-        {!!Form::input('text', 'crm_cro', null, ['class' => 'form-control'])!!}
+        {!!Form::input('text', 'crm_cro', null, ['class' => 'form-control', 'placeholder' => 'Número do convênio'])!!}
       </div>
       <div class="form-group">
         {!!Form::label('status', 'Status:')!!}
-        {!!Form::input('text', 'status', null, ['class' => 'form-control'])!!}
+        {!!Form::input('text', 'status', null, ['class' => 'form-control', 'placeholder' => 'Escolher ( 1 = agendar  ou  2 = finalizar)'])!!}
       </div>
 
       <!-- para teste -->

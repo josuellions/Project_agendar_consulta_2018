@@ -1,6 +1,9 @@
 <!-- <!DOCTYPE html> -->
-<html lang="en">
-<head>
+{{--  <html lang="en">
+<head>  --}}
+@extends('layouts.app')
+
+@section('conteudo_heder')
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet/less" type="text/css" media="screen" href="{{ asset ('less/styles.less') }}" />
@@ -11,17 +14,20 @@
           <link rel="shortcout icon" type="image/x-icon" href="{{ asset( 'img/medical_icon_1.png') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset ( 'img/medical_icon_1.png') }}">
   <title>Agendamento Consultas</title>
-</head>
-<body>
+{{--  </head>  --}}
+@endsection
+
+@section('conteudo_body')
+{{--  <body>  --}}
   <div class="container-fluid">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" title="Agendamento de consultas">Agendamento de Consultas</a>
         </div>
-          <ul class="nav navbar-nav navbar-right">
+          {{--  <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ ('/') }}">Home</a></li>
-          </ul>
+          </ul>  --}}
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ action ('ConsultaController@lista') }}">Listagem</a></li>
           </ul>
@@ -41,5 +47,6 @@
       <p>&copy 2018 - Josuel A. Lopes</p>
     </footer>
   </div>
-</body>
-</html>
+@endsection
+{{--  </body>  --}}
+{{--  </html>  --}}

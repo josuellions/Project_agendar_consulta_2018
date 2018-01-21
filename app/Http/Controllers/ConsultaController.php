@@ -10,6 +10,10 @@ use Redirect;
 //use Request;
 
 class ConsultaController extends Controller {
+
+  public function __construct() {
+    $this->middleware('auth', ['only' => ['lista','detalhes', 'novaconsulta','removerconsulta','alterarconsulta' ]] );
+  }
   
   //consultando dados no banco, enviando dados para view listagem exibir na tela
   public function lista(){
@@ -19,7 +23,7 @@ class ConsultaController extends Controller {
 
   //Consultar detalhada no banco dados, enviar dados para view detalhes exibir na tela 
   public function detalhes($id){
-    $consultar = Consultas::find($id);
+    $consultar = Consultas::findOrFail($id);
     $resposta = (empty($consultar)) ? "Não encontrado!!!" : view('pacientes.detalhe')->withdetalhes( $consultar);
     return $resposta;
   }
@@ -30,9 +34,12 @@ class ConsultaController extends Controller {
   }
 
   //capturando dados do formulario, salvar no banco dados e retorna para listagem
-  public function adicionarconsulta(){
-    Consultas::create(Request::all());
-    return redirect()->route('listagem')->withInput(Request::only('nome_medico'));
+  public function adicionarconsulta(Request $request){
+    $consulta = new Consultas();
+    $consulta = $consulta::create($request->all());
+
+    return redirect()->route('listagem');
+    //return redirect()->route('listagem');//->withInput(Request::only('nome_medico'));
   }
 
   //remover consulta do banco dados, retorna para listagem
